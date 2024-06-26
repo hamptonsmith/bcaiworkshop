@@ -30,13 +30,13 @@ Dr. Hampton Smith
 
 * [langchain](https://python.langchain.com/v0.2/docs/introduction/) is an open source Python library for AI interoperability (and other stuff too)
 * Now we can code Gradio to interact with `langchain`, then plug in different backend AIs (Hugging Face Inference, OpenAI, Claude, whatever)
-* Let's use [https://github.com/hamptonsmith/bcaiworkshop/tree/main/01-a-airepl](this basic REPL) to avoid having to download Gradio locally, then try to extend it to use `langchain` ([https://github.com/hamptonsmith/bcaiworkshop/tree/main/01-b-airepl](answer here))
+* Let's use [this basic REPL](./01-a-airepl) to avoid having to download Gradio locally, then try to extend it to use `langchain` ([answer here](./01-b-airepl))
 
 ## Machine Learning Primer *or* What the heck are 'top_p' and 'temperature'?
 
 * Markov Generators are easy to code and a useful starting point for gaining a basic understanding of what's going on in an LLM model
 * Markov Generators build a Markov Model (shocking) from a set of input texts, which is just a mapping of "if you're sitting looking at word A, how likely is it that the next word is word B?"
-* Let's build a simple Markov Generator to mess around ([https://github.com/hamptonsmith/bcaiworkshop/tree/main/02-markov](answer here))
+* Let's build a simple Markov Generator to mess around ([answer here](./02-markov))
 * So that's fun. But so what? The reality is this simple machine learning exercise mirrors what's happening in modern LLMs. In a Markov model we build a DAG, while in an LLM we build something signficantly more complicated, but the inputs: the order and frequencies of words, and the outputs: a list of probabilities of "what word is likely to come next" are exactly the same. Understanding this gives us a good framework to explore vocabulary.
 	* As a side note, if you're interested in the "significantly more complicated" part, Three Blue One Brown has [an excellent visualization](https://www.youtube.com/watch?v=eMlx5fFNoYc) of it to get you started thinking the right way
 	* After which you might try to tackle the [Attention Is All You Need](https://arxiv.org/pdf/1706.03762) paper, or find a softer introduction to the math elsewhere
