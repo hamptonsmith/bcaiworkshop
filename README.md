@@ -30,7 +30,7 @@ Dr. Hampton Smith
 
 * [langchain](https://python.langchain.com/v0.2/docs/introduction/) is an open source Python library for AI interoperability (and other stuff too)
 * Now we can code Gradio to interact with `langchain`, then plug in different backend AIs (Hugging Face Inference, OpenAI, Claude, whatever)
-* Let's use [this basic REPL](./01-a-airepl) to avoid having to download Gradio locally, then try to extend it to use `langchain` ([answer here](./01-b-airepl))
+* Let's extend it to use `langchain` ([answer here](./01-gradio))
 
 ## Machine Learning Primer *or* What the heck are 'top_p' and 'temperature'?
 
