@@ -59,13 +59,36 @@ And some bonus vocab:
 * **LLM** - large language model. The "model" here is the pre-built set of weights like we built for the Markov Model, but representing an attention-based neural network rather than a simple DAG. The "large language" part indicates that we're analyzing truly enormous corpuses of written language (in many examples, a large portion of the Internet) and in so doing gaining deep insights about linguistic syntax, semantics, and ontologies that even the human writers may not be aware of.
 * **Transformer** - in the context of a neural network, an architecture introduced in the *Attention Is All You Need* paper that decides which words in an input are most strongly related and calls *attention* to those words by "mixing" (i.e., transforming) their probability weights. Transformers are just a way of efficiently implementing attention.
 
-## The key innovation *or* What changed?
+## Prompt engineering
 
-So why are we in an AI boom? What changed?
+* As a starting off point, if we only had a text generation LLM and it didn't already support chat. How would we layer in chat?
+* We might ask it to "generate a conversation between a user and an AI", then seed it with the user's message, ie:
+```
+	Here is a conversation between a user and a helpful AI assistant:
 
-Two things:
+	User: Hello, how are you?
+	AI: Hi! I'm well. How can I help you?
+	User: {message}
+	AI:
+```
+* This is an example of _prompt engineering_. The model doesn't keep any state--it's a static set of trained numbers. But we can "fake" state by passing it everything it needs when we ask it to generate. This is a little like HTTP cookies.
+* Since we control all the input to the model, we can augment it with any instructions or information we like.
+* The primary limitation is _context_, which is the length of the prompt we're able to pass to the model. For some models this may only be a thousand words or so!
 
-1) The transformer architecture was an innovation that let us more efficiently parrallelize the attention technique onto GPUs
-2) This revealed how useful the technique was and made it worth investing the necessary upfront costs--I've heard one estimate of $1.5M just of computing time?--just to build the necessary upfront model off of a huge language corpus
+## Other stuff to check out
 
-Once that model existed, because it's static and reusable, now we all get to use it. And the clear possibilities of this tech means others have invested in building their own models, and researching how to bring the cost of the initial training down.
+* Retrieval augmented generation (RAG)
+	* Build a context dynamically with the most relevant information
+	* [langchain example](https://python.langchain.com/v0.2/docs/tutorials/qa_chat_history/)
+* Agents
+	* As we've seen, LLMs can be pretty good at reasoning... what if we let them decide what to do next? Spawn off other questions? Consolidate information? And only then generate a respone?
+	* [langchain exmaple](https://python.langchain.com/v0.1/docs/modules/agents/quick_start/)
+* Fine-tuning
+	* "Stack" new machine learning examples on top of the existing model. This tweaks the parameters. Good for adding domain information that does not change.
+	* [HuggingFace AutoTrain](https://huggingface.co/autotrain)
+
+## Profession responsibility and ethics
+
+* Revolutionary = dangerous
+* LLMs can hallucinate and users may give them undue trust because they think of computers as infallible. You have a professional duty to let folks know you're using AI!
+* LLMs absorb the biases of the text on which they are trained. When asked to function as recruiters, LLMs are more likely to recommend against hiring candidates who show African American word usage, without ever actually knowing they are Black
